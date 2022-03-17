@@ -4,21 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public Sprite[] sprites;
 
-    public int limiteCartasGiradas, maximoDeCartasDelMismoTipo, cartasRepartidas_X_2;
+    public int tiempoTemporizador, limiteCartasGiradas, maximoDeCartasDelMismoTipo, cartasRepartidas_X_2;
 
     public float tiempoDeGiro;
 
     public GameObject cartaPrefab, contenidoDeCartas;
+
+    public TextMeshProUGUI BotonDeIntentarDeNuevo;
 
     [HideInInspector]
     public int numeroDeCartasGiradas => cartasGiradas.Length;
 
     [HideInInspector]
     public List<Carta> cartasEnTablero;
+
+    [HideInInspector]
+    public bool juegoEnProceso;
 
     private List<string> tiposEliminados = new List<string>();
 
@@ -30,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        juegoEnProceso = true;
         tipos = sprites.ToList();
         RepartirCartas();
     }
@@ -71,6 +78,8 @@ public class GameManager : MonoBehaviour
 
         if (numeroDeCartasGiradas >= limiteCartasGiradas && !estaComparando)
             CompararTipos();
+
+        VerificarSiGano();
     }
 
     void CompararTipos()
@@ -118,5 +127,33 @@ public class GameManager : MonoBehaviour
     public void ReiniciarJuego()
     {
         SceneManager.LoadScene("Juego");
+    }
+
+    void VerificarSiGano()
+    {
+        if(juegoEnProceso)
+        {
+            int cartasListas = System.Array.FindAll(cartasEnTablero.ToArray(), carta => carta.estaLista).Length;
+            bool gano = cartasListas >= cartasEnTablero.Count;
+            juegoEnProceso = !gano;
+
+            if(gano)
+                PresentarBotonDeIntentarDeNuevo("¡Ganaste! \n Juega otra vez");
+        }
+    }
+
+    public void PresentarBotonDeIntentarDeNuevo(string text)
+    {
+        DestruirCartas();
+        BotonDeIntentarDeNuevo.text = text;
+        BotonDeIntentarDeNuevo.gameObject.SetActive(true);
+    }
+
+    private void DestruirCartas()
+    {
+        foreach(Transform carta in contenidoDeCartas.transform)
+        {
+            Destroy(carta.gameObject);
+        }
     }
 }
