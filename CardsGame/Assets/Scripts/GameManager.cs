@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Sprite[] sprites;
 
-    public int limiteCartasGiradas, maximoDeCartasDelMismoTipo;
+    public int limiteCartasGiradas, maximoDeCartasDelMismoTipo, cartasRepartidas_X_2;
 
     public float tiempoDeGiro;
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public List<Carta> cartasEnTablero;
 
-    private List<int> tiposEliminados = new List<int>();
+    private List<string> tiposEliminados = new List<string>();
 
     private Carta[] cartasGiradas;
 
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     void RepartirCartas()
     {
-        int numeroDeCartas = Random.Range(4, sprites.Length);
+        int numeroDeCartas = Random.Range(4, cartasRepartidas_X_2);
 
         for (int c = 0; c < numeroDeCartas; c++)
         {
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
             Carta carta = Instantiate(cartaPrefab).GetComponent<Carta>();
             cartasEnTablero.Add(carta);
             carta.AsignarSprite(tipos[tipo], tipo);
+            Debug.Log("Se asigno " + tipos[tipo].name);
             DescartarTipos();
         }
     }
@@ -98,21 +99,20 @@ public class GameManager : MonoBehaviour
     {
         foreach (Sprite sprite in tipos.ToArray())
         {
-            int tipo = System.Array.FindIndex(tipos.ToArray(), item => item.name == sprite.name);
-
             int cartasDelMismoTipo = System.Array.FindAll(
-                cartasEnTablero.ToArray(), carta => carta.personaje == tipos[tipo].name && !EsUnTipoEliminado(tipo)
+                cartasEnTablero.ToArray(), carta => carta.personaje == sprite.name && !EsUnTipoEliminado(sprite.name)
             ).Length;
 
             if (cartasDelMismoTipo >= maximoDeCartasDelMismoTipo)
             {
-                tipos.Remove(tipos[tipo]);
-                tiposEliminados.Add(tipo);
+                Debug.Log("Se descarto " + sprite.name);
+                tipos.Remove(sprite);
+                tiposEliminados.Add(sprite.name);
             }
         }
     }
 
-    bool EsUnTipoEliminado(int tipo)
+    bool EsUnTipoEliminado(string tipo)
     {
         return System.Array.Exists(tiposEliminados.ToArray(), tipoEliminado => tipoEliminado == tipo);
     }
