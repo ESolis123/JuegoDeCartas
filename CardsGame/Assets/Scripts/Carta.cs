@@ -4,26 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Carta : MonoBehaviour
 {
-    [HideInInspector]
-    public int tipo;
+    public Image imagen;
+    public Sprite parteTrasera;
+
+    public string personaje => parteDelantera.name;
 
     [HideInInspector]
     public bool estaGirada, estaLista;
-
     GameManager gameManager;
-    Image imagen;
+    private Sprite parteDelantera;
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        imagen = GetComponent<Image>();
         Ocultar();
     }
 
     public void AsignarSprite(Sprite sprite, int tipo)
     {
-        this.tipo = tipo;
-        GetComponent<Image>().sprite = sprite;
+        imagen.sprite = sprite;
+        parteDelantera = sprite;
     }
 
     public void LlamarGiro()
@@ -36,28 +36,36 @@ public class Carta : MonoBehaviour
         if (!estaLista && !estaGirada && gameManager.numeroDeCartasGiradas < gameManager.limiteCartasGiradas)
         {
             Mostrar();
+            PlayClip();
             yield return new WaitForSeconds(gameManager.tiempoDeGiro);
-            
+
             if(!estaLista)
                 Ocultar();
         }
     }
 
+    private void PlayClip()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
+        audioSource.Play();
+    }
+
     private void Ocultar()
     {
         estaGirada = false;
-        imagen.color = Color.black;
+        imagen.sprite = parteTrasera;
     }
 
     private void Mostrar()
     {
         estaGirada = true;
-        imagen.color = Color.white;
+        imagen.sprite = parteDelantera;
     }
 
     public void Descartar()
     {
         estaLista = true;
-        imagen.color = Color.red;
     }
 }

@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public List<Carta> cartasEnTablero;
-    
+
+    private List<int> tiposEliminados = new List<int>();
+
     private Carta[] cartasGiradas;
 
     private bool estaComparando;
@@ -34,14 +36,14 @@ public class GameManager : MonoBehaviour
 
     void RepartirCartas()
     {
-        int numeroDeCartas = Random.Range(4, sprites.Length / 2);
+        int numeroDeCartas = Random.Range(4, sprites.Length);
 
         for (int c = 0; c < numeroDeCartas; c++)
         {
             int tipo = Random.Range(0, tipos.Count);
             InstanciarCartas(tipo);
         }
-        
+
         List<Carta> cartas = new List<Carta>(cartasEnTablero);
 
         for (int c = 0; c < numeroDeCartas * limiteCartasGiradas; c++)
@@ -58,11 +60,9 @@ public class GameManager : MonoBehaviour
         {
             Carta carta = Instantiate(cartaPrefab).GetComponent<Carta>();
             cartasEnTablero.Add(carta);
-            Debug.Log($"Tipo: " + tipo + " Tipos: " + tipos.Count);
             carta.AsignarSprite(tipos[tipo], tipo);
+            DescartarTipos();
         }
-
-        DescartarTipos();
     }
 
     private void Update()
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         cartasGiradas = System.Array.FindAll(cartasEnTablero.ToArray(), carta => carta.estaGirada && !carta.estaLista);
 
         if (numeroDeCartasGiradas >= limiteCartasGiradas && !estaComparando)
-            CompararTipos();     
+            CompararTipos();
     }
 
     void CompararTipos()
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             Carta carta = cartasGiradas[c];
 
-            if (carta.tipo == primeraCarta.tipo)
+            if (carta.personaje == primeraCarta.personaje)
             {
                 carta.Descartar();
 
@@ -99,13 +99,22 @@ public class GameManager : MonoBehaviour
         foreach (Sprite sprite in tipos.ToArray())
         {
             int tipo = System.Array.FindIndex(tipos.ToArray(), item => item.name == sprite.name);
-            int cartasDelMismoTipo = System.Array.FindAll(cartasEnTablero.ToArray(), carta => carta.tipo == tipo).Length;
+
+            int cartasDelMismoTipo = System.Array.FindAll(
+                cartasEnTablero.ToArray(), carta => carta.personaje == tipos[tipo].name && !EsUnTipoEliminado(tipo)
+            ).Length;
+
             if (cartasDelMismoTipo >= maximoDeCartasDelMismoTipo)
             {
                 tipos.Remove(tipos[tipo]);
+                tiposEliminados.Add(tipo);
             }
         }
+    }
 
+    bool EsUnTipoEliminado(int tipo)
+    {
+        return System.Array.Exists(tiposEliminados.ToArray(), tipoEliminado => tipoEliminado == tipo);
     }
 
     public void ReiniciarJuego()
