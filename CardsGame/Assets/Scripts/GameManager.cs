@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
             Carta carta = Instantiate(cartaPrefab).GetComponent<Carta>();
             cartasEnTablero.Add(carta);
             carta.AsignarSprite(tipos[tipo], tipo);
-            Debug.Log("Se asigno " + tipos[tipo].name);
             DescartarTipos();
         }
     }
@@ -105,7 +104,6 @@ public class GameManager : MonoBehaviour
 
             if (cartasDelMismoTipo >= maximoDeCartasDelMismoTipo)
             {
-                Debug.Log("Se descarto " + sprite.name);
                 tipos.Remove(sprite);
                 tiposEliminados.Add(sprite.name);
             }
