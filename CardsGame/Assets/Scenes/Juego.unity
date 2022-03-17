@@ -298,8 +298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.099976, y: -87.099976}
-  m_SizeDelta: {x: -299.22583, y: -353.33508}
+  m_AnchoredPosition: {x: 22.199951, y: -87.099976}
+  m_SizeDelta: {x: -207.46106, y: -353.33508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &343585352
 CanvasRenderer:
@@ -1382,6 +1382,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f99d8c8f42dad7a4f91541f91a82d58f, type: 3}
   limiteCartasGiradas: 2
   maximoDeCartasDelMismoTipo: 2
+  cartasRepartidas_X_2: 9
   tiempoDeGiro: 1
   cartaPrefab: {fileID: 215088598118802157, guid: 03099513b77c2cb4fac723a0637d4a48,
     type: 3}
