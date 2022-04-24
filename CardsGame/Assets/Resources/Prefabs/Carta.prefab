@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9033574728055315282}
   - component: {fileID: 8047153479818807624}
   - component: {fileID: 3949156686947943723}
+  - component: {fileID: 2802850134202235726}
   m_Layer: 5
   m_Name: Carta
   m_TagString: Untagged
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 5208851144077924407}
   parteTrasera: {fileID: 21300000, guid: 391185c52c1c0d94898379293bed19f5, type: 3}
-  tipo: 0
   estaGirada: 0
   estaLista: 0
 --- !u!114 &2124443156090607967
@@ -259,6 +259,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2802850134202235726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215088598118802157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac45a7067ea643b488151ebcc52c7c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipo: 0
 --- !u!1 &5208851144077924392
 GameObject:
   m_ObjectHideFlags: 0

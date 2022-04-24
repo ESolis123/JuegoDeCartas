@@ -9,16 +9,8 @@ public class MusicaDeFondo : MonoBehaviour
 
     void Start()
     {
-        GameObject[] fuentes = GameObject.FindGameObjectsWithTag("MusicaDeFondo");
-
-        if(fuentes.Length > 1)
-            Destroy(this.gameObject);
-
-        else
-        {
-            fuenteAudio = GetComponent<AudioSource>();
-            PlayClip(clips[Random.Range(0, clips.Length)]);
-        }
+        fuenteAudio = GetComponent<AudioSource>();
+        PlayClip(clips[Random.Range(0, clips.Length)]);
     }
 
     public void PlayClip(AudioClip clip)
@@ -28,7 +20,6 @@ public class MusicaDeFondo : MonoBehaviour
             fuenteAudio.clip = clip;
             fuenteAudio.loop = true;
             fuenteAudio.Play();
-            DontDestroyOnLoad(fuenteAudio);
         }
     }
 }

@@ -28,19 +28,19 @@ public class Carta : MonoBehaviour
 
     public void LlamarGiro()
     {
-        StartCoroutine(Girar());
+        Girar();
     }
 
-    private IEnumerator Girar()
+    private void Girar()
     {
         if (!estaLista && !estaGirada && gameManager.numeroDeCartasGiradas < gameManager.limiteCartasGiradas)
         {
             Mostrar();
             PlayClip();
-            yield return new WaitForSeconds(gameManager.tiempoDeGiro);
+     //       yield return new WaitForSeconds(gameManager.tiempoDeGiro);
 
-            if(!estaLista)
-                Ocultar();
+       //     if(!estaLista)
+         //       Ocultar();
         }
     }
 
@@ -52,7 +52,7 @@ public class Carta : MonoBehaviour
         audioSource.Play();
     }
 
-    private void Ocultar()
+    public void Ocultar()
     {
         estaGirada = false;
         imagen.sprite = parteTrasera;

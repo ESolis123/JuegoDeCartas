@@ -77,12 +77,12 @@ public class GameManager : MonoBehaviour
         cartasGiradas = System.Array.FindAll(cartasEnTablero.ToArray(), carta => carta.estaGirada && !carta.estaLista);
 
         if (numeroDeCartasGiradas >= limiteCartasGiradas && !estaComparando)
-            CompararTipos();
+            StartCoroutine(CompararTipos());
 
         VerificarSiGano();
     }
 
-    void CompararTipos()
+    IEnumerator CompararTipos()
     {
         estaComparando = true;
         Carta primeraCarta = cartasGiradas[0];
@@ -97,6 +97,13 @@ public class GameManager : MonoBehaviour
 
                 if (!primeraCarta.estaLista)
                     primeraCarta.Descartar();
+            }
+
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
+                carta.Ocultar();
+                primeraCarta.Ocultar();
             }
         }
 
