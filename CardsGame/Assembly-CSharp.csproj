@@ -37,11 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Carta.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Helper.cs" />
-     <Compile Include="Assets\Scripts\ManejadorDeMusica.cs" />
-     <Compile Include="Assets\Scripts\MenuConfiguraciones.cs" />
-     <Compile Include="Assets\Scripts\MenuInicio.cs" />
+     <Compile Include="Assets\Scripts\Manejadores\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manejadores\Helper.cs" />
+     <Compile Include="Assets\Scripts\Manejadores\ManejadorDeMusica.cs" />
+     <Compile Include="Assets\Scripts\Menus\MenuConfiguraciones.cs" />
+     <Compile Include="Assets\Scripts\Menus\MenuInicio.cs" />
+     <Compile Include="Assets\Scripts\Menus\MenuParametros.cs" />
      <Compile Include="Assets\Scripts\MusicaDeFondo.cs" />
      <Compile Include="Assets\Scripts\Temporizador.cs" />
      <Compile Include="Assets\Scripts\TextoMenu.cs" />

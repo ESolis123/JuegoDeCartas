@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public Sprite[] sprites;
 
-    public int tiempoTemporizador, limiteCartasGiradas, maximoDeCartasDelMismoTipo, cartasRepartidas_X_2;
+    public int limiteCartasGiradas, maximoDeCartasDelMismoTipo;
 
     public float tiempoDeGiro;
 
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void RepartirCartas()
     {
-        int numeroDeCartas = Random.Range(4, cartasRepartidas_X_2);
+        int numeroDeCartas = Random.Range(MenuParametros.minCartas, MenuParametros.maxCartas);
 
         for (int c = 0; c < numeroDeCartas; c++)
         {

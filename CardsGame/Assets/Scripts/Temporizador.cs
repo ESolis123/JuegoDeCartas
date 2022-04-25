@@ -14,7 +14,7 @@ public class Temporizador : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        tiempo = gameManager.tiempoTemporizador;
+        tiempo = MenuParametros.tiempo;
         texto = GetComponent<TextMeshProUGUI>();
     }
 
