@@ -37,10 +37,6 @@ public class Carta : MonoBehaviour
         {
             Mostrar();
             PlayClip();
-     //       yield return new WaitForSeconds(gameManager.tiempoDeGiro);
-
-       //     if(!estaLista)
-         //       Ocultar();
         }
     }
 

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     private bool estaComparando;
 
     private List<Sprite> tipos;
-
+int numeroDeCartas;
     private void Start()
     {
         juegoEnProceso = true;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void RepartirCartas()
     {
-        int numeroDeCartas = Random.Range(MenuParametros.minCartas, MenuParametros.maxCartas);
+        numeroDeCartas = Random.Range(MenuParametros.minCartas/2, (MenuParametros.maxCartas+2)/2);
 
         for (int c = 0; c < numeroDeCartas; c++)
         {
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         List<Carta> cartas = new List<Carta>(cartasEnTablero);
 
-        for (int c = 0; c < numeroDeCartas * limiteCartasGiradas; c++)
+        for (int c = 0; c < numeroDeCartas * 2; c++)
         {
             int index = Random.Range(0, cartas.Count);
             cartas[index].transform.SetParent(contenidoDeCartas.transform);
@@ -63,11 +63,13 @@ public class GameManager : MonoBehaviour
 
     private void InstanciarCartas(int tipo)
     {
-        for (int c = 0; c < limiteCartasGiradas; c++)
+        for(int c=0;c<2; c++)
         {
             Carta carta = Instantiate(cartaPrefab).GetComponent<Carta>();
             cartasEnTablero.Add(carta);
+
             carta.AsignarSprite(tipos[tipo], tipo);
+
             DescartarTipos();
         }
     }
