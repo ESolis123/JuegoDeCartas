@@ -20,6 +20,11 @@ public class Carta : MonoBehaviour
         Ocultar();
     }
 
+    private void Update()
+    {
+        GetComponent<Button>().enabled = gameManager.juegoEnProceso;
+    }
+
     public void AsignarSprite(Sprite sprite, int tipo)
     {
         imagen.sprite = sprite;

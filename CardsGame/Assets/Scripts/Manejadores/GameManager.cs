@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     private bool estaComparando;
 
     private List<Sprite> tipos;
-int numeroDeCartas;
+
+    int numeroDeCartas;
     private void Start()
     {
         juegoEnProceso = true;
