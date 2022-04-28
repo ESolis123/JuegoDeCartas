@@ -6,22 +6,20 @@ using TMPro;
 using System;
 public class MenuParametros : MonoBehaviour
 {
-    public static int maxCartas = 0, minCartas = 0, tiempo = 0;
+    public static int maxCartas = 14, minCartas = 6, tiempo = 60;
+    private static bool modificado;
     public Propiedad pCartasMin, pCartasMax, pTiempo;
 
     void Start()
     {
-        IniciarValores();
+        GuardarValores();
     }
 
-    private void IniciarValores()
+    private void GuardarValores()
     {
-        if(maxCartas == 0 && minCartas ==0 && tiempo ==0)
-        {
-            maxCartas = (int) pCartasMax.value;
-            minCartas = (int) pCartasMin.value;
-            tiempo =  (int) pTiempo.value;
-        }
+        pCartasMax.value = maxCartas;
+        pCartasMin.value = minCartas;
+        pTiempo.value = tiempo;
     }
 
     public void CambiarMaximoDeCartas() => maxCartas = (int) pCartasMax.value;
