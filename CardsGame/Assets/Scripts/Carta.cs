@@ -16,6 +16,7 @@ public class Carta : MonoBehaviour
 
     private void Start()
     {
+        transform.localScale = Vector3.one;
         gameManager = FindObjectOfType<GameManager>();
         Ocultar();
     }
