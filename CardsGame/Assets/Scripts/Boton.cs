@@ -10,7 +10,7 @@ public class Boton : MonoBehaviour
 
     public void ReiniciarEscena()
     {
-        int escenaActual = SceneManager.GetActiveScene().buildIndex;
+        ReiniciarEscena(0);
     }
 
     public static void ReiniciarEscena(int escena = 0)
