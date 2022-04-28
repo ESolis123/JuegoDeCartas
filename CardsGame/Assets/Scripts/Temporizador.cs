@@ -32,6 +32,7 @@ public class Temporizador : MonoBehaviour
         {
             gameManager.PresentarBotonDeIntentarDeNuevo("Perdiste \n intenta de nuevo");
             gameManager.juegoEnProceso = false;
+            gameManager.juegoTerminado = true;
         }
     }
 

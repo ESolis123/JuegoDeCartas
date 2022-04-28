@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public List<Carta> cartasEnTablero;
 
     [HideInInspector]
-    public bool juegoEnProceso;
+    public bool juegoEnProceso, juegoTerminado;
 
     private List<string> tiposEliminados = new List<string>();
 
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void ReiniciarJuego()
     {
-        SceneManager.LoadScene("Juego");
+        Boton.ReiniciarEscena();
     }
 
     void VerificarSiGano()
@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
             int cartasListas = System.Array.FindAll(cartasEnTablero.ToArray(), carta => carta.estaLista).Length;
             bool gano = cartasListas >= cartasEnTablero.Count;
             juegoEnProceso = !gano;
+            juegoTerminado = gano;
 
             if(gano)
                 PresentarBotonDeIntentarDeNuevo("¡Ganaste! \n Juega otra vez");

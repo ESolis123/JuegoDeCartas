@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class BotonPausa : MonoBehaviour
 {
     public Image imagen;
@@ -14,7 +16,11 @@ public class BotonPausa : MonoBehaviour
     }
     public void Cambiar()
     {
-        gameManager.juegoEnProceso = !gameManager.juegoEnProceso;
+        if(gameManager.juegoTerminado)
+            Boton.ReiniciarEscena();
+
+        else
+            gameManager.juegoEnProceso = !gameManager.juegoEnProceso;
     }
 
     private void VerificarEstadoBoton()
