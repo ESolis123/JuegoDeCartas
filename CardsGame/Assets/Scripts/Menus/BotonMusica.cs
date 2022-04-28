@@ -10,6 +10,7 @@ public class BotonMusica : MonoBehaviour
     public void Cambiar()
     {
         ManejadorDeMusica.musica = !ManejadorDeMusica.musica;
+        ManejadorDeMusica.efectos = !ManejadorDeMusica.efectos;
     }
 
     private void VerificarEstadoDeMusica()

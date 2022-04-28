@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30.5}
-  m_SizeDelta: {x: 0, y: 37.674423}
+  m_AnchoredPosition: {x: 0, y: -32.53}
+  m_SizeDelta: {x: 0, y: 41.734283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &306496654
 GameObject:
@@ -2895,6 +2895,7 @@ MonoBehaviour:
   BotonDeIntentarDeNuevo: {fileID: 1440127756}
   cartasEnTablero: []
   juegoEnProceso: 0
+  juegoTerminado: 0
 --- !u!4 &1924051669
 Transform:
   m_ObjectHideFlags: 0
@@ -3234,7 +3235,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -48.200012, y: -0.6371975}
-  m_SizeDelta: {x: 42.088013, y: 33.168945}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2127716597
 MonoBehaviour:
